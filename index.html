@@ -537,8 +537,168 @@ fbq('init', '1380840439802436', {}, {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
+
+/* Custom Header Navbar Styles */
+.custom-header-navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 99999;
+    padding: 15px 0;
+    font-family: 'Poppins', 'Outfit', 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.navbar-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.navbar-brand-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a202c;
+    letter-spacing: -0.5px;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.navbar-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a5568;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-link:hover {
+    color: #8c8c8c;
+}
+
+.navbar-link.btn-navbar-cta {
+    background-color: #8c8c8c;
+    color: #ffffff !important;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar-link.btn-navbar-cta:hover {
+    background-color: #737373;
+    transform: translateY(-1px);
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 100000;
+}
+
+.navbar-toggle .hamburger-bar {
+    width: 100%;
+    height: 2px;
+    background-color: #1a202c;
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsive menu */
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: #ffffff;
+        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 30px 30px 30px;
+        gap: 20px;
+        transition: right 0.3s ease;
+    }
+
+    .navbar-menu.active {
+        right: 0;
+    }
+
+    .navbar-toggle.active .hamburger-bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .navbar-toggle.active .hamburger-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar-toggle.active .hamburger-bar:nth-child(3) {
+        transform: rotate(-45deg) translate(6deg, -6deg);
+    }
+}
+
 </style></head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-35323 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-canvas elementor-kit-13565 elementor-page elementor-page-35323">
+
+<header class="custom-header-navbar">
+    <div class="navbar-container">
+        <a href="https://kirim-digi.netlify.app/" class="navbar-brand">
+            <img src="KirimDigi.ico" alt="KirimDigi Logo" class="navbar-logo">
+            <span class="navbar-brand-text">KirimDigi</span>
+        </a>
+        <button class="navbar-toggle" aria-label="Toggle Menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+        <nav class="navbar-menu">
+            <a href="https://kirim-digi.netlify.app/" class="navbar-link">Beranda</a>
+            <a href="https://kirimdigi-classic.netlify.app/" class="navbar-link">Tema Platinum</a>
+            <a href="https://kirimdigi-premium.netlify.app/" class="navbar-link">Tema Premium</a>
+            <a href="https://kirimdigi-classic.netlify.app/#addon-section" class="navbar-link">Add On/Pelengkap</a>
+            <a href="https://wa.me/6281380989932?text=saya%20mau%20order%20atau%20tanya2%20tema%20reguler%20ka%2C%20tolong%20dibantu" class="navbar-link btn-navbar-cta" target="_blank">Hubungi Kami</a>
+        </nav>
+    </div>
+</header>
+
 <!-- Meta Pixel Code -->
 <noscript>
 <img alt="fbpx" height="1" src="https://www.facebook.com/tr?id=1380840439802436&ev=PageView&noscript=1" style="display:none" width="1"/>
@@ -4122,6 +4282,30 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 </svg>
 </a>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var toggleBtn = document.querySelector('.navbar-toggle');
+    var navMenu = document.querySelector('.navbar-menu');
+    
+    if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener('click', function() {
+            toggleBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when a link is clicked
+        var navLinks = document.querySelectorAll('.navbar-link');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                toggleBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+});
+</script>
+
 </body>
 </html>
 <!--
